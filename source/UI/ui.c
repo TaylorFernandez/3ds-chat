@@ -18,7 +18,29 @@ C3D_RenderTarget *bottom;
 C2D_TextBuf timeBuf;
 C2D_Text timeText;
 
+C2D_SpriteSheet spriteSheet;
+C2D_Sprite batteryState;
+
+
+C2D_Sprite getCurrentBatterySprite(){
+    //Get the current battery level and draw to screen
+    PTMU_GetBatteryLevel(&batteryLevel);
+    PTMU_GetBatteryChargeState(&charging);
+
+    C2D_Sprite batteryTemp;
+
+    if(charging == 1){
+        C2D_SpriteFromSheet(&batteryTemp, spriteSheet, 5);
+    }
+
+    C2D_SpriteSetCenter(&batteryTemp, 0.5f, 0.5f);
+    C2D_SpriteSetPos(&batteryTemp, 1.0f, 1.0f);
+    return batteryTemp;
+}
+
+
 int initColors(){
+    //Creates the colors used in ui
     clrWhite = C2D_Color32(0xFF, 0xFF, 0xFF, 0xFF);
     clrGreen = C2D_Color32(0x00, 0xFF, 0x00, 0xFF);
     clrRed   = C2D_Color32(0xFF, 0x00, 0x00, 0xFF);
@@ -27,10 +49,15 @@ int initColors(){
 }
 
 int initLibraries(){
+    //Initialize libraries
     gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
+
+    //load the sprites
+    spriteSheet = C2D_SpriteSheetLoad("romfs:/gfs/images.t3s");
+    if(!spriteSheet) svcBreak(USERBREAK_PANIC);
 
     return 0;
 }
@@ -42,7 +69,6 @@ int initTop(){
     timeBuf = C2D_TextBufNew(4096);
     C2D_TextParse(&timeText, timeBuf, getTime());
     C2D_TextOptimize(&timeText);
-
 
     return 0;
 
@@ -63,8 +89,8 @@ int updateTop(){
     C2D_DrawText(&timeText,0,getCenteredHorizontal(timeText), 8.0f, 0.5f, 0.5f, 0.5f);
 
     //Get the current battery level and draw to screen
-    PMTU_GetBatteryLevel(&batteryLevel);
-    PTMU_GetBatteryChargeState(charging);
+    // batteryState = getCurrentBatterySprite();
+    // C2D_DrawSprite(&batteryState);
 
     C3D_FrameEnd(0);
     
