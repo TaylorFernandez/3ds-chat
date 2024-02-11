@@ -108,7 +108,8 @@ formatting.o: /home/taylor/Desktop/2d_shapes/source/UI/formatting.c \
  /opt/devkitpro/libctru/include/c2d/sprite.h \
  /opt/devkitpro/libctru/include/c2d/text.h \
  /opt/devkitpro/libctru/include/c2d/font.h \
- /home/taylor/Desktop/2d_shapes/source/UI/ui.h
+ /home/taylor/Desktop/2d_shapes/source/UI/ui.h \
+ /home/taylor/Desktop/2d_shapes/source/UI/../common.h
 /home/taylor/Desktop/2d_shapes/source/UI/formatting.h:
 /opt/devkitpro/libctru/include/citro3d.h:
 /opt/devkitpro/libctru/include/c3d/types.h:
@@ -219,3 +220,4 @@ formatting.o: /home/taylor/Desktop/2d_shapes/source/UI/formatting.c \
 /opt/devkitpro/libctru/include/c2d/text.h:
 /opt/devkitpro/libctru/include/c2d/font.h:
 /home/taylor/Desktop/2d_shapes/source/UI/ui.h:
+/home/taylor/Desktop/2d_shapes/source/UI/../common.h:

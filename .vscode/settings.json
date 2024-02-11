@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "timestring.h": "c"
+        "timestring.h": "c",
+        "uistatemanager.h": "c",
+        "formatting.h": "c"
     }
 }

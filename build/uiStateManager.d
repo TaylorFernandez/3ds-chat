@@ -1,5 +1,7 @@
-main.o: /home/taylor/Desktop/2d_shapes/source/main.c \
- /opt/devkitpro/libctru/include/citro2d.h \
+uiStateManager.o: \
+ /home/taylor/Desktop/2d_shapes/source/UI/uiStateManager.c \
+ /home/taylor/Desktop/2d_shapes/source/UI/uiStateManager.h \
+ /home/taylor/Desktop/2d_shapes/source/UI/../common.h \
  /opt/devkitpro/libctru/include/citro3d.h \
  /opt/devkitpro/libctru/include/c3d/types.h \
  /opt/devkitpro/libctru/include/3ds.h \
@@ -101,16 +103,16 @@ main.o: /home/taylor/Desktop/2d_shapes/source/main.c \
  /opt/devkitpro/libctru/include/c3d/fog.h \
  /opt/devkitpro/libctru/include/c3d/framebuffer.h \
  /opt/devkitpro/libctru/include/c3d/renderqueue.h \
+ /opt/devkitpro/libctru/include/citro2d.h \
  /opt/devkitpro/libctru/include/tex3ds.h \
  /opt/devkitpro/libctru/include/c2d/base.h \
  /opt/devkitpro/libctru/include/c2d/spritesheet.h \
  /opt/devkitpro/libctru/include/c2d/sprite.h \
  /opt/devkitpro/libctru/include/c2d/text.h \
  /opt/devkitpro/libctru/include/c2d/font.h \
- /home/taylor/Desktop/2d_shapes/source/UI/ui.h \
- /home/taylor/Desktop/2d_shapes/source/UI/../common.h \
- /home/taylor/Desktop/2d_shapes/source/common.h
-/opt/devkitpro/libctru/include/citro2d.h:
+ /home/taylor/Desktop/2d_shapes/source/UI/ui.h
+/home/taylor/Desktop/2d_shapes/source/UI/uiStateManager.h:
+/home/taylor/Desktop/2d_shapes/source/UI/../common.h:
 /opt/devkitpro/libctru/include/citro3d.h:
 /opt/devkitpro/libctru/include/c3d/types.h:
 /opt/devkitpro/libctru/include/3ds.h:
@@ -212,6 +214,7 @@ main.o: /home/taylor/Desktop/2d_shapes/source/main.c \
 /opt/devkitpro/libctru/include/c3d/fog.h:
 /opt/devkitpro/libctru/include/c3d/framebuffer.h:
 /opt/devkitpro/libctru/include/c3d/renderqueue.h:
+/opt/devkitpro/libctru/include/citro2d.h:
 /opt/devkitpro/libctru/include/tex3ds.h:
 /opt/devkitpro/libctru/include/c2d/base.h:
 /opt/devkitpro/libctru/include/c2d/spritesheet.h:
@@ -219,5 +222,3 @@ main.o: /home/taylor/Desktop/2d_shapes/source/main.c \
 /opt/devkitpro/libctru/include/c2d/text.h:
 /opt/devkitpro/libctru/include/c2d/font.h:
 /home/taylor/Desktop/2d_shapes/source/UI/ui.h:
-/home/taylor/Desktop/2d_shapes/source/UI/../common.h:
-/home/taylor/Desktop/2d_shapes/source/common.h:
