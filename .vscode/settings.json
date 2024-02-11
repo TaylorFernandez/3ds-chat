@@ -2,6 +2,9 @@
     "files.associations": {
         "timestring.h": "c",
         "uistatemanager.h": "c",
-        "formatting.h": "c"
+        "formatting.h": "c",
+        "common.h": "c",
+        "citro2d.h": "c",
+        "citro3d.h": "c"
     }
 }

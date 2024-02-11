@@ -7,8 +7,6 @@
 #include "UI/ui.h"
 #include "common.h"
 
-states currentApplicationState; 
-
 //---------------------------------------------------------------------------------
 int main(int argc, char* argv[]) {
 //------------------\---------------------------------------------------------------
@@ -17,7 +15,7 @@ int main(int argc, char* argv[]) {
 	initTop();
 	initBottom();
 
-	currentApplicationState = APPLICATION_INIT;
+	applicationCurrentState = APPLICATION_INIT;
 	bool miiSelected = false;
 
 	// Main loop
@@ -28,17 +26,26 @@ int main(int argc, char* argv[]) {
 		// Respond to user input
 		u32 kDown = hidKeysDown();
 
-		if(kDown & KEY_A && miiSelected == false){
-			currentApplicationState = APPLICATION_SELECT_MII;
-			miiSelected = true;
-			//Temporary; used to break infinite mii select loop
-			currentApplicationState = APPLICATION_INIT;
+		if(kDown & KEY_A) {
+			if(applicationCurrentState == APPLICATION_INIT && miiSelected == false){
+				applicationCurrentState = APPLICATION_SELECT_MII;
+				miiSelected = true;			
+			}else if(applicationCurrentState == APPLICATION_VERIFY_INFO){
+				applicationCurrentState = APPLICATION_REGISTER_WAITING;
+			}else if(applicationCurrentState == APPLICATION_REGISTER_COMPLETE){
+				applicationCurrentState = APPLICATION_MAIN_MENU;
+			}
+		}
+		if(kDown & KEY_B){
+			if(applicationCurrentState == APPLICATION_VERIFY_INFO){
+				applicationCurrentState = APPLICATION_RETRY_MII;
+			}
 		}
 		if (kDown & KEY_START)
 			break; // break in order to return to hbmenu
 
-		updateTop(currentApplicationState);
-		updateBottom(currentApplicationState);
+		updateTop(applicationCurrentState);
+		updateBottom(applicationCurrentState);
 	
 		
 	}
