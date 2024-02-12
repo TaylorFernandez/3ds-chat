@@ -14,7 +14,6 @@ u32 clrBlue;
 C2D_Text text1;
 C2D_TextBuf text1Buffer; 
 
-char miiName[36];
 char verifyString[120];
 bool startedMiiSelector = false;
 
@@ -92,7 +91,7 @@ int renderRegisterWaiting(){
 }
 
 int renderRegisterComplete(){
-     C2D_TextBufClear(text1Buffer);
+    C2D_TextBufClear(text1Buffer);
 
     C2D_DrawRectangle(25.0f, 30.0f, 0.0f, SCREEN_WIDTH-50, SCREEN_HEIGHT-60,clrWhite,clrWhite,clrWhite,clrWhite);
 
@@ -103,7 +102,15 @@ int renderRegisterComplete(){
 }
 
 int renderMainMenu(){
+    setupComplete = true;
+
+    C2D_TextBufClear(text1Buffer);
+
     C2D_DrawRectangle(25.0f, 30.0f, 0.0f, SCREEN_WIDTH-50, SCREEN_HEIGHT-60,clrWhite,clrWhite,clrWhite,clrWhite);
+
+    C2D_TextParse(&text1, text1Buffer, "Placeholder text");
+    C2D_TextOptimize(&text1);
+    C2D_DrawText(&text1, 0, 30.0f, 45.0f, 0.0f, 0.5f, 0.5f);
     return 0;
 }
 

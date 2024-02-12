@@ -7,17 +7,23 @@
 #include <citro3d.h>
 #include <citro2d.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 u32 clrAqua;
 
 u8 batteryLevel = 5;
 u8 charging;
 u8 wifiStatus;
+char currentUsernameString[100];
+
 C3D_RenderTarget *top;
 C3D_RenderTarget *bottom;
 
 C2D_TextBuf timeBuf;
 C2D_Text timeText;
+
+C2D_TextBuf nameTextBuffer;
+C2D_Text nameText;
 
 C2D_SpriteSheet spriteSheet;
 
@@ -84,6 +90,7 @@ int initTop(){
     initColors();
 
     timeBuf = C2D_TextBufNew(4096);
+    nameTextBuffer = C2D_TextBufNew(4096);
     C2D_TextParse(&timeText, timeBuf, getTime());
     C2D_TextOptimize(&timeText);
 
@@ -92,10 +99,18 @@ int initTop(){
 }
 
 int updateTop(states applicationCurrentState){
+    sprintf(currentUsernameString, "Current User: %s", miiName);
+
+
     //Clear the time buffer; update the text
     C2D_TextBufClear(timeBuf);
     C2D_TextParse(&timeText, timeBuf, getTime());
     C2D_TextOptimize(&timeText);
+
+    //Clear the username buffer; update the text
+    C2D_TextBufClear(nameTextBuffer);
+    C2D_TextParse(&nameText, nameTextBuffer, currentUsernameString);
+    C2D_TextOptimize(&nameText);
 
     // Render the scene
     C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
@@ -116,6 +131,11 @@ int updateTop(states applicationCurrentState){
     //Updates the content of the application
     updateApplicationTop(applicationCurrentState);
 
+    //Check whether the setup is complete; If it is, display username on UI
+    if(setupComplete == true){
+        C2D_DrawText(&nameText, 0, 5.0f, SCREEN_HEIGHT-15, 0.5f, 0.5f, 0.5f);
+    }
+
     C3D_FrameEnd(0);
     
     return 0;
@@ -129,7 +149,10 @@ int initBottom(){
 int updateBottom(states applicationCurrentState){
 
     int numSprites = C2D_SpriteSheetCount(spriteSheet);
-    printf("\x1b[8;1HCurrent Application State: %d", applicationCurrentState);
+    if(setupComplete == true){
+            printf("\x1b[8;1HCurrent Application State: %d", applicationCurrentState);
+
+    }
     return 0;
 
 }

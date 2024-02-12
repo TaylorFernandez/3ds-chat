@@ -17,4 +17,6 @@ typedef enum{
 extern states applicationCurrentState;
 extern MiiSelectorConf msConf;
 extern MiiSelectorReturn msRet;
+extern bool setupComplete;
+extern char miiName[36];
 #endif

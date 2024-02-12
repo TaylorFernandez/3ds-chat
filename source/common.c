@@ -7,3 +7,5 @@ states applicationCurrentState;
 MiiSelectorConf msConf;
 MiiSelectorReturn msRet;
 bool waitingOnNetwork;
+bool setupComplete = false;
+char miiName[36];
